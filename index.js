@@ -17,27 +17,3 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-
-var http = require('http');
-var fs = require('fs');
-
-var url = require('url');
-var adr = 'http://localhost:8080/default.htm?year=2017&month=february';
-var q = url.parse(adr, true);
-
-http.createServer(function (req, res) {
-  fs.readFile('demofile.html', function(err, data) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(data);
-    res.end(q.host);
-	
-	
-	console.log(q.host);
-console.log(q.pathname);
-console.log(q.search);
-
-var qdata = q.query;
-console.log(qdata.month);
-	
-  });
-}).listen(port);
